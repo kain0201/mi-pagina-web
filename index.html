@@ -1438,12 +1438,15 @@ const blueprintTranslations = {
     "60HP DRIVE":"60HP驱动","DYNAMIC BRAKE":"动态制动","MOTOR":"电机","BACMES 60HP DYNAMIC BRAKING &amp; DRIVE POWER SCHEMA":"BACMES 60HP动态制动与驱动电力"
   }
 };
-function localizeBlueprint(svg,index){
-  const map=blueprintTranslations[idiomaActual];
-  if(!map) return svg;
-  let s=svg;
-  for(const [from,to] of Object.entries(map)){
-    s=s.split(from).join(to);
+function localizeBlueprint(svg, index) {
+  // Si el elemento es una etiqueta de imagen, la devolvemos tal cual sin tocarla
+  if (svg.includes('<img ')) return svg;
+  
+  const map = blueprintTranslations[idiomaActual];
+  if (!map) return svg;
+  let s = svg;
+  for (const [from, to] of Object.entries(map)) {
+    s = s.split(from).join(to);
   }
   return s;
 }
